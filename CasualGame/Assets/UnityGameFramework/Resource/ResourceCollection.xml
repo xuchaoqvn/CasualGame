@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<UnityGameFramework>
+  <ResourceCollection>
+    <Resources>
+      <Resource Name="2048/Configs" LoadType="0" Packed="False" />
+      <Resource Name="2048/Scenes" LoadType="0" Packed="False" />
+      <Resource Name="2048/Textures" LoadType="0" Packed="False" />
+    </Resources>
+    <Assets>
+      <Asset Guid="9414f2d47cf137c40905ccbfd84aa5f9" ResourceName="2048/Configs" />
+      <Asset Guid="d323e5e6b20d9074cb907b6d4a85f1c2" ResourceName="2048/Scenes" />
+      <Asset Guid="f9e93f50cfe983149a014661158a3e3f" ResourceName="2048/Textures" />
+    </Assets>
+  </ResourceCollection>
+</UnityGameFramework>
