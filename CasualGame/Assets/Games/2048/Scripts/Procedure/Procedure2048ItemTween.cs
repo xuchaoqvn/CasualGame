@@ -20,7 +20,8 @@ namespace _2048
         {
             base.OnUpdate(procedureOwner, elapseSeconds, realElapseSeconds);
 
-            //this.ChangeState<Procedure2048SpawnItem>(procedureOwner);
+            if (procedureOwner.CurrentStateTime > 0.1f)
+                this.ChangeState<Procedure2048SpawnItem>(procedureOwner);
         }
 
         protected override void OnLeave(IFsm<IProcedureManager> procedureOwner, bool isShutdown)

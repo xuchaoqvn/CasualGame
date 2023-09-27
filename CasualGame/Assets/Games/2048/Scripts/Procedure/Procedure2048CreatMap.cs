@@ -24,6 +24,11 @@ namespace _2048
         /// 高
         /// </summary>
         private int m_Height;
+
+        /// <summary>
+        /// 间隔
+        /// </summary>
+        private float m_Delta = 5.0f;
         #endregion
 
         protected override void OnEnter(IFsm<IProcedureManager> procedureOwner)
@@ -32,30 +37,21 @@ namespace _2048
 
             this.m_Width = procedureOwner.GetData<VarInt32>("Width");
             this.m_Height = procedureOwner.GetData<VarInt32>("Height");
-            procedureOwner.SetData<VarInt32>("Width", this.m_Width);
-            procedureOwner.SetData<VarInt32>("Height", this.m_Height);
 
-            this.CreatMap();
+            _2048Component _2048Component = GameEntry.GetGameFrameworkComponent<_2048Component>();
+            _2048Component.CreatMap(this.m_Width, this.m_Height);
         }
 
         protected override void OnUpdate(IFsm<IProcedureManager> procedureOwner, float elapseSeconds, float realElapseSeconds)
         {
             base.OnUpdate(procedureOwner, elapseSeconds, realElapseSeconds);
 
-            //this.ChangeState<Procedure2048SpawnItem>(procedureOwner);
+            this.ChangeState<Procedure2048SpawnItem>(procedureOwner);
         }
 
         protected override void OnLeave(IFsm<IProcedureManager> procedureOwner, bool isShutdown)
         {
             base.OnLeave(procedureOwner, isShutdown);
-        }
-
-        /// <summary>
-        /// 生成地图
-        /// </summary>
-        private void CreatMap()
-        {
-
         }
     }
 }

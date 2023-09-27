@@ -36,6 +36,8 @@ namespace _2048
         {
             base.OnUpdate(procedureOwner, elapseSeconds, realElapseSeconds);
 
+            this.Keyboard();
+
             if (!this.m_UserInputAction)
                 return;
 
@@ -57,6 +59,72 @@ namespace _2048
         private void OnUserInputAction()
         {
 
+        }
+
+        /// <summary>
+        /// 键盘
+        /// </summary>
+        private void Keyboard()
+        {
+            UnityEngine.InputSystem.Keyboard keyboard = UnityEngine.InputSystem.Keyboard.current;
+            if (keyboard.wKey.wasPressedThisFrame)
+            {
+                this.m_MoveDir = 0;
+                this.m_UserInputAction = true;
+            }
+            else if (keyboard.dKey.wasPressedThisFrame)
+            {
+                this.m_MoveDir = 1;
+                this.m_UserInputAction = true;
+            }
+            else if (keyboard.sKey.wasPressedThisFrame)
+            {
+                this.m_MoveDir = 2;
+                this.m_UserInputAction = true;
+            }
+            else if (keyboard.aKey.wasPressedThisFrame)
+            {
+                this.m_MoveDir = 3;
+                this.m_UserInputAction = true;
+            }
+        }
+
+        private Vector2 m_LastPosition;
+
+        private void Mouse()
+        {
+            UnityEngine.InputSystem.Mouse mouse = UnityEngine.InputSystem.Mouse.current;
+
+            if (mouse.leftButton.wasPressedThisFrame)
+                this.m_LastPosition = mouse.position.value;
+            else if (mouse.leftButton.isPressed)
+            {
+                //左
+                if (mouse.position.value.x - this.m_LastPosition.x < 0)
+                {
+
+                }
+                //右
+                else if (mouse.position.value.x - this.m_LastPosition.x > 0)
+                {
+
+                }
+                //上
+                else if (mouse.position.value.y - this.m_LastPosition.y > 0)
+                {
+
+                }
+                //下
+                else if (mouse.position.value.y - this.m_LastPosition.y < 0)
+                {
+
+                }
+                this.m_LastPosition = mouse.position.value;
+            }
+            else if (mouse.leftButton.wasReleasedThisFrame)
+            {
+
+            }
         }
     }
 }

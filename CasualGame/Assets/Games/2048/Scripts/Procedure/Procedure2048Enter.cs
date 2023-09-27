@@ -38,6 +38,9 @@ namespace _2048
 
             this.m_LoadConfig = false;
 
+            _2048Component _2048Component = new GameObject("2048Component", typeof(_2048Component)).GetComponent<_2048Component>();
+            GameEntry.RegisterGameFrameworkComponent(_2048Component);
+
             string configAssetName = AssetUtility.GetConfigAsset("2048Config");
             GameEntry.Config.ReadData(configAssetName, this);
         }
@@ -66,6 +69,9 @@ namespace _2048
         protected override void OnLeave(IFsm<IProcedureManager> procedureOwner, bool isShutdown)
         {
             base.OnLeave(procedureOwner, isShutdown);
+
+            string configAssetName = AssetUtility.GetConfigAsset("2048Config");
+            GameEntry.Config.ReadData(configAssetName);
 
             this.m_LoadConfig = false;
         }

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using GameFramework.Fsm;
 using GameFramework.Procedure;
 using UnityEngine;
 using UnityGameFramework.Runtime;
+using GameEntry = UnityGameFramework.Extension.Runtime.GameEntry;
 
 namespace _2048
 {
@@ -18,58 +20,40 @@ namespace _2048
             base.OnEnter(procedureOwner);
 
             int moveDir = procedureOwner.GetData<VarInt32>("MoveDir");
-            /*
+            _2048Component _2048Component = GameEntry.GetGameFrameworkComponent<_2048Component>();
+
             switch (moveDir)
             {
                 case 0:
-                    this.TryMoveUp();
+                    _2048Component.TryMoveUp();
                     break;
                 case 1:
-                    this.TryMoveRight();
+                    _2048Component.TryMoveRight();
                     break;
                 case 2:
-                    this.TryMoveDown();
+                    _2048Component.TryMoveDown();
                     break;
                 case 3:
-                    this.TryMoveLeft();
+                    _2048Component.TryMoveLeft();
                     break;
                 default:
                     break;
-            }*/
+            }
         }
 
         protected override void OnUpdate(IFsm<IProcedureManager> procedureOwner, float elapseSeconds, float realElapseSeconds)
         {
             base.OnUpdate(procedureOwner, elapseSeconds, realElapseSeconds);
 
-            //this.ChangeState<Procedure2048WaitUserInputAction>(procedureOwner);
-            //this.ChangeState<Procedure2048ItemTween>(procedureOwner);
+            if (DOTween.TotalActiveTweens() > 0)
+                this.ChangeState<Procedure2048ItemTween>(procedureOwner);
+            else
+                this.ChangeState<Procedure2048WaitUserInputAction>(procedureOwner);
         }
 
         protected override void OnLeave(IFsm<IProcedureManager> procedureOwner, bool isShutdown)
         {
             base.OnLeave(procedureOwner, isShutdown);
-        }
-
-        /// <summary>
-        /// 尝试向上移动单位
-        /// </summary>
-        private void TryMoveUp()
-        {
-            int startIndex;
-            int deltaIndex;
-            int moveDelta;
-
-            /*
-            int index = startIndex;
-            while (index >= 0)
-            {
-                if (this.m_ChessPiecess.ContainsKey(index))
-                    this.MoveChessPieces(this.m_ChessPiecess[index], -1, this.m_Chessboard.Size, moveDelta);
-
-                index += deltaIndex;
-            }
-            */
         }
     }
 }

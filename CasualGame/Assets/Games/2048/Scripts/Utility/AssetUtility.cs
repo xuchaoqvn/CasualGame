@@ -19,5 +19,26 @@ namespace _2048
         {
             return $"Assets/Games/2048/Configs/{assetName}.{(fromBytes ? "bytes" : "txt")}";
         }
+
+        /// <summary>
+        /// 获取配置资源路径
+        /// </summary>
+        /// <param name="assetName">资源名称</param>
+        /// <param name="png">是否是png文件</param>
+        /// <returns>资源路径</returns>
+        internal static string GetSpriteAsset(string assetName, bool png = true)
+        {
+            return $"Assets/Games/2048/Sprites/{assetName}.{(png ? "png" : "jpg")}";
+        }
+
+        /// <summary>
+        /// 获取配置资源路径
+        /// </summary>
+        /// <param name="assetName">资源名称</param>
+        /// <returns>资源路径</returns>
+        internal static string GetPrefabAsset(string assetName)
+        {
+            return $"Assets/Games/2048/Prefabs/{assetName}.prefab";
+        }
     }
 }

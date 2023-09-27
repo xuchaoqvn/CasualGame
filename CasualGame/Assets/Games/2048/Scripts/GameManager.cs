@@ -51,13 +51,14 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        UnityEngine.InputSystem.Keyboard keyboard = UnityEngine.InputSystem.Keyboard.current;
+        if (keyboard.wKey.wasPressedThisFrame)
             this.OnInputAction(0);
-        else if (Input.GetKeyDown(KeyCode.D))
+        else if (keyboard.dKey.wasPressedThisFrame)
             this.OnInputAction(1);
-        else if (Input.GetKeyDown(KeyCode.S))
+        else if (keyboard.sKey.wasPressedThisFrame)
             this.OnInputAction(2);
-        else if (Input.GetKeyDown(KeyCode.A))
+        else if (keyboard.aKey.wasPressedThisFrame)
             this.OnInputAction(3);
         //else if (Input.GetKeyDown(KeyCode.Q))
         //    this.SpawnChessPieces(1);
